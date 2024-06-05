@@ -20,10 +20,10 @@ import { eq, gt, like, not, or, and, lt, gte, lte } from "drizzle-orm";
 
 import { TIUser, TSUser, TIProfile, TSProfile } from "./drizzle/schema";
 
-//querying the database
-const getUsers = async (): Promise<TSUser[] | null> => {
-  return await db.query.UserTable.findMany();
-};
+// //querying the database
+// const getUsers = async (): Promise<TSUser[] | null> => {
+//   return await db.query.UserTable.findMany();
+// };
 
 // const getUserById = async (id: number): Promise<TSUser | null> => {
 //   return await db.query.UserTable.findOne({
@@ -39,13 +39,13 @@ const getProfiles = async (): Promise<TSProfile[] | null> => {
 };
 
 //inserting data
-const createUserProfile = async (user: TIUser, profile: TIProfile) => {
-  await db
-    .insert(ProfilesTable)
-    .values({
-      userId: user.userId,
-      bio: user.bio,
-    })
-    .returning()
-    .execute();
-};
+// const createUserProfile = async (user: TIUser, profile: TIProfile) => {
+//   await db
+//     .insert(ProfilesTable)
+//     .values({
+//       userId: user.userId,
+//       bio: user.bio,
+//     })
+//     .returning()
+//     .execute();
+// };

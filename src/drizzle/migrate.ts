@@ -11,7 +11,7 @@ async function migration() {
   console.log("=======Migrating Database=======");
   // await db.createSchema();
   await migrate(db, {
-    migrationsFolder: __dirname + "./src/drizzle/migrations",
+    migrationsFolder: __dirname + "/migrations",
   });
 
   await client.end();
@@ -24,5 +24,5 @@ async function migration() {
 // run the migration function and catch any errors
 migration().catch((err) => {
   console.error(err);
-  process.exit(1);
+  process.exit(0);
 }); // run the migration function and catch any errors

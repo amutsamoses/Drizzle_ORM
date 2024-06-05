@@ -19,3 +19,14 @@ export default defineConfig({
   verbose: true,
   strict: true,
 });
+
+// module.exports = {
+//   client: "postgres", // or 'postgres'
+//   connection: {
+//     host: "localhost",
+//     user: "postgres",
+//     password: "1234567890",
+//     database: "socialmedia",
+//     port: 5432,
+//   },
+// };
