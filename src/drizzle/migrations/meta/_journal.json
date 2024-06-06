@@ -36,6 +36,13 @@
       "when": 1717573609653,
       "tag": "0004_minor_scourge",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1717591640850,
+      "tag": "0005_narrow_nico_minoru",
+      "breakpoints": true
     }
   ]
 }

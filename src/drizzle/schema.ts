@@ -150,7 +150,7 @@ export const OrderMenuItem = pgTable("order_menu_item", {
   menu_item_id: uuid("menu_item_id").references(() => MenuItem.id, {
     onDelete: "cascade",
   }),
-  quantity: integer("quantity").notNull(),
+  quanlity: integer("quality").notNull(),
   item_price: decimal("item_price").notNull(),
   price: decimal("price").notNull(),
   comment: text("comment"),
@@ -197,7 +197,7 @@ export const RestaurantOwnerRole = pgEnum("restaurant_owner role", [
 ]);
 //relations
 
-export const restaurantRelation = relations(Restaurant, ({ many, one }) => ({
+export const restaurantRelations = relations(Restaurant, ({ many, one }) => ({
   menuItems: many(MenuItem),
   orders: many(Orders),
   city: one(City, {
@@ -207,7 +207,7 @@ export const restaurantRelation = relations(Restaurant, ({ many, one }) => ({
   owners: many(RestaurantOwner),
 }));
 
-export const cityRelation = relations(City, ({ many, one }) => ({
+export const cityRelations = relations(City, ({ many, one }) => ({
   state: one(State, {
     fields: [City.state_id],
     references: [State.id],
@@ -216,11 +216,11 @@ export const cityRelation = relations(City, ({ many, one }) => ({
   restaurants: many(Restaurant),
 }));
 
-export const stateRelation = relations(State, ({ many }) => ({
+export const stateRelations = relations(State, ({ many }) => ({
   cities: many(City),
 }));
 
-export const addressRelation = relations(Address, ({ one, many }) => ({
+export const addressRelations = relations(Address, ({ one, many }) => ({
   city: one(City, {
     fields: [Address.city_id],
     references: [City.id],
@@ -232,7 +232,7 @@ export const addressRelation = relations(Address, ({ one, many }) => ({
   orders: many(Orders),
 }));
 
-export const restaurantOwnerRelation = relations(
+export const restaurantOwnerRelations = relations(
   RestaurantOwner,
   ({ one }) => ({
     user: one(Users, {
@@ -246,7 +246,7 @@ export const restaurantOwnerRelation = relations(
   })
 );
 
-export const userRelation = relations(Users, ({ many }) => ({
+export const userRelations = relations(Users, ({ many }) => ({
   addresses: many(Address),
   comments: many(Comment),
   drivers: many(Driver),
@@ -254,7 +254,7 @@ export const userRelation = relations(Users, ({ many }) => ({
   restaurantOwners: many(RestaurantOwner),
 }));
 
-export const driverRelation = relations(Driver, ({ one, many }) => ({
+export const driverRelations = relations(Driver, ({ one, many }) => ({
   user: one(Users, {
     fields: [Driver.user_id],
     references: [Users.id],
@@ -262,7 +262,7 @@ export const driverRelation = relations(Driver, ({ one, many }) => ({
   orders: many(Orders),
 }));
 
-export const menuItemRelation = relations(MenuItem, ({ one, many }) => ({
+export const menuItemRelations = relations(MenuItem, ({ one, many }) => ({
   restaurant: one(Restaurant, {
     fields: [MenuItem.restaurant_id],
     references: [Restaurant.id],
@@ -274,11 +274,11 @@ export const menuItemRelation = relations(MenuItem, ({ one, many }) => ({
   orderMenuItems: many(OrderMenuItem),
 }));
 
-export const categoryRelation = relations(Category, ({ many }) => ({
+export const categoryRelations = relations(Category, ({ many }) => ({
   menuItems: many(MenuItem),
 }));
 
-export const orderRelation = relations(Orders, ({ one, many }) => ({
+export const orderRelations = relations(Orders, ({ one, many }) => ({
   restaurant: one(Restaurant, {
     fields: [Orders.restaurant_id],
     references: [Restaurant.id],
@@ -300,7 +300,7 @@ export const orderRelation = relations(Orders, ({ one, many }) => ({
   orderStatuses: many(OrderStatus),
 }));
 
-export const orderMenuItemRelation = relations(OrderMenuItem, ({ one }) => ({
+export const orderMenuItemRelations = relations(OrderMenuItem, ({ one }) => ({
   menuItem: one(MenuItem, {
     fields: [OrderMenuItem.menu_item_id],
     references: [MenuItem.id],
@@ -322,7 +322,7 @@ export const orderStatusRelation = relations(OrderStatus, ({ one }) => ({
   }),
 }));
 
-export const statusCatalogRelation = relations(StatusCatalog, ({ many }) => ({
+export const statusCatalogRelations = relations(StatusCatalog, ({ many }) => ({
   orderStatuses: many(OrderStatus),
 }));
 
@@ -339,29 +339,42 @@ export const commentRelation = relations(Comment, ({ one }) => ({
 
 export type TIRestaurant = typeof Restaurant.$inferInsert;
 export type TSRestaurant = typeof Restaurant.$inferSelect;
+//
 export type TICity = typeof City.$inferInsert;
 export type TSCity = typeof City.$inferSelect;
+
 export type TIState = typeof State.$inferInsert;
 export type TSState = typeof State.$inferSelect;
+
 export type TIAddress = typeof Address.$inferInsert;
 export type TSAddress = typeof Address.$inferSelect;
+
 export type TIRestaurantOwner = typeof RestaurantOwner.$inferInsert;
 export type TSRestaurantOwner = typeof RestaurantOwner.$inferSelect;
+
 export type TIUser = typeof Users.$inferInsert;
 export type TSUser = typeof Users.$inferSelect;
+
 export type TIDriver = typeof Driver.$inferInsert;
 export type TSDriver = typeof Driver.$inferSelect;
+
 export type TIMenuItem = typeof MenuItem.$inferInsert;
 export type TSMenuItem = typeof MenuItem.$inferSelect;
+
 export type TICategory = typeof Category.$inferInsert;
 export type TSCategory = typeof Category.$inferSelect;
+
 export type TIOrder = typeof Orders.$inferInsert;
 export type TSOrder = typeof Orders.$inferSelect;
+
 export type TIOrderMenuItem = typeof OrderMenuItem.$inferInsert;
 export type TSOrderMenuItem = typeof OrderMenuItem.$inferSelect;
+
 export type TIOrderStatus = typeof OrderStatus.$inferInsert;
 export type TSOrderStatus = typeof OrderStatus.$inferSelect;
+
 export type TIStatusCatalog = typeof StatusCatalog.$inferInsert;
 export type TSStatusCatalog = typeof StatusCatalog.$inferSelect;
+
 export type TIComment = typeof Comment.$inferInsert;
 export type TSComment = typeof Comment.$inferSelect;
